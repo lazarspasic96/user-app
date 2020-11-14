@@ -40,22 +40,29 @@ const Home: React.FC<{}> = ({}) => {
   const classes = useStyles();
 
   function createData(
+    id: string,
     name: string,
-    calories: number,
-    fat: number,
-    carbs: number,
-    protein: number
+    email: string,
+    city: string,
   ) {
-    return { name, calories, fat, carbs, protein };
+    return { id, name, email, city};
   }
-
+/* 
   const rows = [
     createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
     createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
     createData("Eclair", 262, 16.0, 24, 6.0),
     createData("Cupcake", 305, 3.7, 67, 4.3),
     createData("Gingerbread", 356, 16.0, 49, 3.9),
-  ];
+  ]; */
+
+
+  const rows = users.map(user => createData(user.id, user.name, user.email, user.city))
+
+  if(loading) {
+      return <p>Loading....</p>
+  }
+
 
   return (
     <section className={classes.Home}>
@@ -67,22 +74,21 @@ const Home: React.FC<{}> = ({}) => {
             <TableHead>
               <TableRow>
                 <TableCell>ID</TableCell>
-                <TableCell align="right">Name</TableCell>
-                <TableCell align="right">Username&nbsp;(g)</TableCell>
-                <TableCell align="right">Email&nbsp;(g)</TableCell>
-                <TableCell align="right">City&nbsp;(g)</TableCell>
+                <TableCell align="center">Name</TableCell>
+                <TableCell align="center">Email</TableCell>
+                <TableCell align="center">City</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {rows.map((row) => (
                 <TableRow key={row.name}>
                   <TableCell component="th" scope="row">
-                    {row.name}
+                    {row.id}
                   </TableCell>
-                  <TableCell align="right">{row.calories}</TableCell>
-                  <TableCell align="right">{row.fat}</TableCell>
-                  <TableCell align="right">{row.carbs}</TableCell>
-                  <TableCell align="right">{row.protein}</TableCell>
+                  <TableCell align="center">{row.name}</TableCell>
+                  <TableCell align="center">{row.email}</TableCell>
+                  <TableCell align="center">{row.city}</TableCell>
+                  <TableCell align="center">{row.protein}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
