@@ -1,25 +1,25 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Header from "./components/Header/Header";
 import Main from "./containers/Main";
 import { Paper, Grid } from "@material-ui/core";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import { ThemeContext } from "./context/theme-context";
+import { connect } from "react-redux";
 
+
+
+const App = (props): JSX.Element => {
+
+ const themeColor = props.theme
+  
 const theme = createMuiTheme({
   palette: {
-    type: "light",
+    type: themeColor
   },
 });
 
-const App = (): JSX.Element => {
-  
-const toggleTheme = useContext(ThemeContext);
-
-console.log(toggleTheme.theme, 'aloo')
 
 
-
-console.log(toggleTheme)
+console.log(props.theme)
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -34,4 +34,9 @@ console.log(toggleTheme)
   );
 };
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    theme: state.theme.defaultTheme
+  }
+}
+export default connect(mapStateToProps, null)(App);

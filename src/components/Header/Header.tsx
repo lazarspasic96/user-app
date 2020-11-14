@@ -1,4 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import * as action from "../../store/actions/index";
 import {
   createStyles,
   makeStyles,
@@ -10,7 +12,6 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Switch from "@material-ui/core/Switch";
-import { ThemeContext } from "../../context/theme-context";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -33,11 +34,12 @@ export default function Header() {
   const toggleTheme = () => {
     theme === "light" ? setTheme("dark") : setTheme("light");
   };
+  const dispatch = useDispatch();
 
-  const theming = useContext(ThemeContext);
+  const themeHandler = (theme) => dispatch(action.themeHandler(theme));
 
   useEffect(() => {
-    theming.setTheme(theme);
+    themeHandler(theme);
   }, [theme]);
 
   return (
