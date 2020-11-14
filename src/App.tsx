@@ -25,7 +25,7 @@ console.log(props.theme)
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Paper style = {{height: '100vh'}}>
+        <Paper style = {{height: '100%'}}>
           <Grid container direction="column">
             <Header />
             <Main />

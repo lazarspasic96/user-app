@@ -3,5 +3,6 @@
 
 export {
     themeHandler,
-    loginHandler
+    loginHandler,
+    logOutHandler
 } from './actionCreators/actionCreators'
