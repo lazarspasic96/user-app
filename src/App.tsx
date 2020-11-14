@@ -1,12 +1,19 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
+
+import { Route, Switch, Redirect } from "react-router-dom";
+import Auth from "./containers/Auth/Auth";
 
 const App = (): JSX.Element => {
-  return (
-    <Button variant="contained" color="primary">
-      radi
-    </Button>
-  );
+
+  return <>
+
+<Switch>
+  <Route exact path = '/login' component = {Auth} />
+  <Redirect exact from="/" to="/login" />
+</Switch>
+  
+
+  </>;
 };
 
 export default App;
