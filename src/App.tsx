@@ -1,9 +1,11 @@
 import React, { useContext, useEffect } from "react";
 import Header from "./components/Header/Header";
 import Main from "./containers/Main";
-import { Paper, Grid } from "@material-ui/core";
+import { Paper, Grid, Theme } from "@material-ui/core";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { connect } from "react-redux";
+import classes from "*.module.css";
+
 
 
 
@@ -23,7 +25,7 @@ console.log(props.theme)
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Paper>
+        <Paper style = {{height: '100vh'}}>
           <Grid container direction="column">
             <Header />
             <Main />

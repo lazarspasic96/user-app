@@ -1,6 +1,7 @@
-import React from 'react'
+
 
 
 export {
-    themeHandler
+    themeHandler,
+    loginHandler
 } from './actionCreators/actionCreators'

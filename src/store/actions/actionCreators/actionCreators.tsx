@@ -10,3 +10,11 @@ export const themeHandler = (theme) => {
 };
 
 
+export const loginHandler = () => {
+  return {
+    type: actionTypes.LOGIN_SUCESS,
+    token: true
+  }
+}
+
+

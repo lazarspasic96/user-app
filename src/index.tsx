@@ -8,10 +8,12 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import {Provider} from 'react-redux'
 import thunk from 'redux-thunk'
 import themeReducer from "./store/reducers/theme";
+import authReeducer from "./store/reducers/auth";
 
 
 const rootReducer = combineReducers({
-  theme: themeReducer
+  theme: themeReducer,
+  auth: authReeducer
 })
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
@@ -26,6 +28,8 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById("root")
 );
+
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
