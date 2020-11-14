@@ -1,10 +1,12 @@
-import React from 'react';
-import Button from '@material-ui/core/Button';
+import React from "react";
+import Button from "@material-ui/core/Button";
 
-function App() {
+const App = (): JSX.Element => {
   return (
-<Button variant="contained" color="primary">radi</Button>
+    <Button variant="contained" color="primary">
+      radi
+    </Button>
   );
-}
+};
 
 export default App;
