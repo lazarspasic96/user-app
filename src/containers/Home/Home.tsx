@@ -11,6 +11,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import http from "../../services/http";
 import User from "../../models/User";
+import Loader from "../../components/Header/Loader/Loader";
 
 const Home: React.FC<{}> = ({}) => {
   const [users, setUsers] = useState([]);
@@ -48,8 +49,8 @@ const Home: React.FC<{}> = ({}) => {
     createData(user.id, user.name, user.email, user.city)
   );
 
-  if (loading) {
-    return <p>Loading....</p>;
+  if (true) {
+    return <Loader loadingMessage = {'Fetching user data...'} />
   }
 
   return (
