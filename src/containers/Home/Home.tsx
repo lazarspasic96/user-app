@@ -13,7 +13,7 @@ import http from "../../services/http";
 import User from "../../models/User";
 import Loader from "../../components/Header/Loader/Loader";
 
-const Home: React.FC<{}> = ({}) => {
+const Home = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -49,7 +49,7 @@ const Home: React.FC<{}> = ({}) => {
     createData(user.id, user.name, user.email, user.city)
   );
 
-  if (true) {
+  if (loading) {
     return <Loader loadingMessage = {'Fetching user data...'} />
   }
 
@@ -76,7 +76,6 @@ const Home: React.FC<{}> = ({}) => {
                   <TableCell component="th" scope="row">
                     {row.id}
                   </TableCell>
-
               <TableCell align="center"><Link to = {`/${row.id}`}>{row.name} </Link></TableCell>
                   <TableCell align="center">{row.email}</TableCell>
                   <TableCell align="center">{row.city}</TableCell>

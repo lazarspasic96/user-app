@@ -12,7 +12,7 @@ const UserPage = ({ match }: any) => {
         setUser(new User(res.data))
     }
     )
-  }, [id]);
+  }, []);
 
   console.log(user, 'singleUser')
   return (

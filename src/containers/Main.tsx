@@ -25,7 +25,7 @@ const Main: React.FC = () => {
   let routes = (
     <Switch>
       <Route exact path="/login" component={Auth} />
-      <Redirect exact from="/" to="/login" />
+      <Redirect to = '/login' />
     </Switch>
   );
 
