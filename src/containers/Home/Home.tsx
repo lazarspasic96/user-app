@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid, Typography } from "@material-ui/core";
+import {Link} from 'react-router-dom'
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -13,24 +14,24 @@ import User from "../../models/User";
 
 const Home: React.FC<{}> = ({}) => {
   const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     http.get(`/users`).then((res) => {
       const results = res.data.map((user: object) => new User(user));
-      setUsers(results)
-      setLoading(false)
-    })
-
+      setUsers(results);
+      setLoading(false);
+    });
   }, []);
 
-  console.log(users)
+  console.log(users);
 
   const useStyles = makeStyles((theme) => ({
     Home: {
       margin: "0 auto",
       width: "70%",
       height: "100vh",
+      padding: theme.spacing(6),
     },
     table: {
       minWidth: 650,
@@ -39,35 +40,24 @@ const Home: React.FC<{}> = ({}) => {
 
   const classes = useStyles();
 
-  function createData(
-    id: string,
-    name: string,
-    email: string,
-    city: string,
-  ) {
-    return { id, name, email, city};
-  }
-/* 
-  const rows = [
-    createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-    createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-    createData("Eclair", 262, 16.0, 24, 6.0),
-    createData("Cupcake", 305, 3.7, 67, 4.3),
-    createData("Gingerbread", 356, 16.0, 49, 3.9),
-  ]; */
-
-
-  const rows = users.map(user => createData(user.id, user.name, user.email, user.city))
-
-  if(loading) {
-      return <p>Loading....</p>
+  function createData(id: string, name: string, email: string, city: string) {
+    return { id, name, email, city };
   }
 
+  const rows = users.map((user: any) =>
+    createData(user.id, user.name, user.email, user.city)
+  );
+
+  if (loading) {
+    return <p>Loading....</p>;
+  }
 
   return (
     <section className={classes.Home}>
       <Grid container direction="column" alignItems="center">
-        <Typography>User App List</Typography>
+        <Typography align="center" color="primary" variant="h2">
+          User App List
+        </Typography>
 
         <TableContainer component={Paper}>
           <Table className={classes.table} aria-label="simple table">
@@ -85,7 +75,8 @@ const Home: React.FC<{}> = ({}) => {
                   <TableCell component="th" scope="row">
                     {row.id}
                   </TableCell>
-                  <TableCell align="center">{row.name}</TableCell>
+
+              <TableCell align="center"><Link to = {`/${row.id}`}>{row.name} </Link></TableCell>
                   <TableCell align="center">{row.email}</TableCell>
                   <TableCell align="center">{row.city}</TableCell>
                   <TableCell align="center">{row.protein}</TableCell>

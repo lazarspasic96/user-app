@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { connect, useDispatch } from "react-redux";
 import * as action from "../../store/actions/index";
 
-const Auth = (props) => {
+const Auth = ({ history }: any) => {
   const useStyles = makeStyles((theme) => ({
     authPage: {
       margin: "0 auto",
@@ -39,7 +39,7 @@ const Auth = (props) => {
     if (user) {
       if (JSON.parse(user).email === data.email) {
         handleLogin();
-        props.history.push("/");
+        history.push("/");
       } else {
         setError("User with that email does not exist.");
       }
@@ -47,7 +47,7 @@ const Auth = (props) => {
       const userData = JSON.stringify({ email: data.email, isAuth: true });
       handleLogin();
       localStorage.setItem("user", userData);
-      props.history.push("/");
+      history.push("/");
     }
   };
 
