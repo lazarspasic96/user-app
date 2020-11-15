@@ -6,6 +6,8 @@ import { Typography, Grid } from "@material-ui/core";
 import { useForm } from "react-hook-form";
 import { connect, useDispatch } from "react-redux";
 import * as action from "../../store/actions/index";
+import Avatar from "@material-ui/core/Avatar";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 
 const Auth = ({ history }: any) => {
   const useStyles = makeStyles((theme) => ({
@@ -17,6 +19,15 @@ const Auth = ({ history }: any) => {
     errorMeassage: {
       color: "red",
       fontSize: "16px",
+    },
+    avatar: {
+      margin: "auto",
+      padding: "9px",
+      backgroundColor: theme.palette.secondary.main,
+    },
+    loginText: {
+      textAlign: "center",
+      padding: '18px'
     },
   }));
   const classes = useStyles();
@@ -59,8 +70,11 @@ const Auth = ({ history }: any) => {
       justify="center"
       alignItems="center"
     >
-      <section>
-        <Typography color="textSecondary" align="center">
+      <section style={{ width: "30%" }}>
+        <Avatar className={classes.avatar}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5" className={classes.loginText}>
           Login
         </Typography>
         <form onSubmit={handleSubmit(onSubmit)}>
