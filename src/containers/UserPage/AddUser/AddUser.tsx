@@ -5,16 +5,15 @@ import { makeStyles } from "@material-ui/core/styles";
 const AddUser = (props) => {
   const useStyles = makeStyles({
     addNewUserContainer: {
-      width: "100%",
-      height: "100vh",
+      width: "100%"
     },
     addUserForm: {
       display: "flex",
-      flexDirection: "row",
-      justifyContent: "flex-start",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignContent: 'center',
       flexWrap: "wrap",
       width: "50%",
-      marginTop: '-380px'
     },
     input: {
       margin: "10px",
@@ -27,15 +26,16 @@ const AddUser = (props) => {
     addBtn: {
         alignSelf: 'center',
         margin: '0 auto',
-        width: '50%',
-        marginTop: '20px'
+        width: '190px',
+        marginTop: '20px',
+
     }
   });
 
   const classes = useStyles();
 
   return (
-    <section>
+    <section style = {{height: '100vh'}}>
       <Typography
         className={classes.addUserHeading}
         align="center"
@@ -53,6 +53,7 @@ const AddUser = (props) => {
       >
         <form className={classes.addUserForm}>
           <TextField
+          fullWidth
             className={classes.input}
             variant="outlined"
             required
@@ -93,7 +94,7 @@ const AddUser = (props) => {
             label="Last name"
             size="small"
           />
-          <Button type = 'submit' color="primary" variant ='contained' className ={classes.addBtn}>
+          <Button type = 'submit' color="primary" variant ='contained' className = {classes.addBtn}>
             Add User
           </Button>
         </form>

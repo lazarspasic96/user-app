@@ -12,4 +12,7 @@ code {
     monospace;
 }
 
+.MuiContainer-root {
+  padding: 0px !important;
+}
 
