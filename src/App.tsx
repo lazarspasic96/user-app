@@ -20,7 +20,7 @@ const App = (): JSX.Element => {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Paper style={{ height: "100%" }}>
+        <Paper variant = 'elevation' style={{ height: '100%', boxShadow: 'none' }}>
           <Grid style={{ height: "100%" }} container direction="column">
             <Header />
             <Main />

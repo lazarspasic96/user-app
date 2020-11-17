@@ -6,8 +6,9 @@ import http from "../../services/http";
 const UserPage = ({ match }: any) => {
   const [user, setUser] = useState();
 
-  const id = match.params.id;
+
   useEffect(() => {
+    const id = match.params.id;
     http.get(`/users/${id}`).then(res => {
         setUser(new User(res.data))
     }
