@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid, Typography } from "@material-ui/core";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -12,6 +12,8 @@ import Paper from "@material-ui/core/Paper";
 import http from "../../services/http";
 import User from "../../models/User";
 import Loader from "../../components/Header/Loader/Loader";
+import { Fab } from "@material-ui/core";
+import AddIcon from "@material-ui/icons/Add";
 
 const Home = () => {
   const [users, setUsers] = useState([]);
@@ -31,11 +33,16 @@ const Home = () => {
     Home: {
       margin: "0 auto",
       width: "70%",
-      height: "100vh",
+      height: "100%",
       padding: theme.spacing(6),
     },
     table: {
       minWidth: 650,
+    },
+    AddIcon: {
+      position: "fixed",
+      right: "35px",
+      bottom: "30px",
     },
   }));
 
@@ -50,7 +57,7 @@ const Home = () => {
   );
 
   if (loading) {
-    return <Loader loadingMessage = {'Fetching user data...'} />
+    return <Loader loadingMessage={"Fetching user data..."} />;
   }
 
   return (
@@ -59,7 +66,6 @@ const Home = () => {
         <Typography align="center" color="primary" variant="h2">
           User App List
         </Typography>
-
         <TableContainer component={Paper}>
           <Table className={classes.table} aria-label="simple table">
             <TableHead>
@@ -76,7 +82,9 @@ const Home = () => {
                   <TableCell component="th" scope="row">
                     {row.id}
                   </TableCell>
-              <TableCell align="center"><Link to = {`/${row.id}`}>{row.name} </Link></TableCell>
+                  <TableCell align="center">
+                    <Link to={`/users/${row.id}`}>{row.name} </Link>
+                  </TableCell>
                   <TableCell align="center">{row.email}</TableCell>
                   <TableCell align="center">{row.city}</TableCell>
                   <TableCell align="center">{row.protein}</TableCell>
@@ -85,6 +93,11 @@ const Home = () => {
             </TableBody>
           </Table>
         </TableContainer>
+        <Link to = '/add-user'>
+          <Fab className={classes.AddIcon} color="primary">
+            <AddIcon />
+          </Fab>
+        </Link>
       </Grid>
     </section>
   );

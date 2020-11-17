@@ -3,30 +3,25 @@ import Header from "./components/Header/Header";
 import Main from "./containers/Main";
 import { Paper, Grid, Theme } from "@material-ui/core";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import { connect } from "react-redux";
-import classes from "*.module.css";
+import { useSelector } from "react-redux";
+
+const App = (): JSX.Element => {
+  const themeColor = useSelector((state) => {
+    return state.theme.defaultTheme;
+  });
+
+  const theme = createMuiTheme({
+    palette: {
+      type: themeColor,
+    },
+  });
 
 
-
-
-const App = (props): JSX.Element => {
-
- const themeColor = props.theme
-  
-const theme = createMuiTheme({
-  palette: {
-    type: themeColor
-  },
-});
-
-
-
-console.log(props.theme)
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Paper style = {{height: '100%'}}>
-          <Grid container direction="column">
+        <Paper style={{ height: "100%" }}>
+          <Grid style={{ height: "100%" }} container direction="column">
             <Header />
             <Main />
           </Grid>
@@ -36,9 +31,4 @@ console.log(props.theme)
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    theme: state.theme.defaultTheme
-  }
-}
-export default connect(mapStateToProps, null)(App);
+export default App;

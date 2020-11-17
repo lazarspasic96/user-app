@@ -9,28 +9,31 @@ const Main: React.FC = () => {
   const isAuth = useSelector((state) => {
     return state.auth.isAuth;
   });
-  const user = localStorage.getItem("user");
+
 
   const dispatch = useDispatch();
   const handleLogin = () => dispatch(action.loginHandler());
   let history = useHistory();
 
   useEffect(() => {
+    const user = localStorage.getItem("user");
     if (user) {
       history.push("/");
       return JSON.parse(user).isAuth ? handleLogin() : null;
     }
-  });
+  }, []);
 
-  let routes = (
-    <Switch>
-      <Route exact path="/login" component={Auth} />
-      <Redirect to = '/login' />
-    </Switch>
-  );
+  let routes: any;
 
   if (isAuth) {
     routes = <PrivateRoute />;
+  }
+
+  else {
+   routes = <Switch>
+      <Route exact path="/login" component={Auth} />
+      <Redirect to = '/login' />
+    </Switch>
   }
 
   return routes;

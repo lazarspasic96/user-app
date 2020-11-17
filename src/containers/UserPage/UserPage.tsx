@@ -16,8 +16,8 @@ const UserPage = ({ match }: any) => {
 
   console.log(user, 'singleUser')
   return (
-    <Grid>
-      <Typography>Single User</Typography>
+    <Grid style ={{height: '100vh'}}>
+   <Typography>This shoud be a single user page</Typography>
     </Grid>
   );
 };
